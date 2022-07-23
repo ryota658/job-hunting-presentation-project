@@ -1,0 +1,12 @@
+{
+    "/js/routes/RouterConfig.js": "/js/routes/RouterConfig.js",
+    "/js/index.js": "/js/index.js",
+    "/js/pages/AttendanceManegementDay.js": "/js/pages/AttendanceManegementDay.js",
+    "/js/pages/Home.js": "/js/pages/Home.js",
+    "/js/pages/SignUp.js": "/js/pages/SignUp.js",
+    "/js/compornents/index/AttendanceButton.js": "/js/compornents/index/AttendanceButton.js",
+    "/js/compornents/index/Clock.js": "/js/compornents/index/Clock.js",
+    "/js/compornents/index/SimpleAppBar.js": "/js/compornents/index/SimpleAppBar.js",
+    "/js/fook/NewDate.js": "/js/fook/NewDate.js",
+    "/css/app.css": "/css/app.css"
+}

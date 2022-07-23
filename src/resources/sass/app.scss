@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.clock {
+    font-family: 'Share Tech Mono', monospace;
+    padding: 10px;
+    display: grid;
+    place-items: center;
+    height: 50vh;
+    .clock-date {
+        font-size: 25px;
+        text-align: center;
+        overflow-wrap: break-word;
+        margin-bottom: 20px;
+    }
+    .clock-time {
+        font-size: 80px;
+        margin-top: 20px;
+        overflow-wrap: break-word;
+    }
+}
+
+.button_flex {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    height: 200px;
+    li {
+        button {
+            width: 350px;
+        }
+    }
+}

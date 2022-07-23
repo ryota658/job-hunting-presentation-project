@@ -1,0 +1,35 @@
+version: '3'
+services:
+
+  php:
+    build: ./php
+    volumes:
+      - ./src:/app
+  
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - php
+    volumes:
+      - ./src/:/app
+
+  db:
+    build: ./mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    user: 1000:1000
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8888:80
+    depends_on:
+      - db
