@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -7,21 +8,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { ThemeProvider } from '@mui/material';
-import { theme } from '../theme/theme';
+import { Button, ThemeProvider } from '@mui/material';
 import moment from 'moment';
+import { theme } from '../theme/theme';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
-const now = moment(); // Fri Jan 01 2021 05:59:01 GMT+0900
-const nowFormat = now.format(); // 2021-01-01T05:59:01+09:00
 const createData = (
     name: string,
     calories: number,
     fat: number,
     carbs: number,
-    protein: number
-)=>{
+    protein: number,
+) => {
     return { name, calories, fat, carbs, protein };
-}
+};
 
 const rows = [
     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
@@ -47,12 +48,30 @@ const rows = [
     createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 export const CustomizedTables = () => {
+    const [date, setDate] = useState<string>(moment().format('YYYY-MM-DD'));
+    const addDate = () => {
+        const days = moment(date).add(1, 'days').format('YYYY-MM-DD');
+        setDate(days);
+    };
+    const subtractDate = () => {
+        const days = moment(date).subtract(1, 'days').format('YYYY-MM-DD');
+        setDate(days);
+    };
     return (
         <ThemeProvider theme={theme}>
             <div>
-                {nowFormat}
+                <Button variant="text" onClick={subtractDate}>
+                    <ArrowLeftIcon />
+                </Button>
+                {date}
+                <Button variant="text" onClick={addDate}>
+                    <ArrowRightIcon />
+                </Button>
             </div>
-            <TableContainer component={Paper} sx={{ maxHeight: 440, maxWidth: "90%" , margin: 'auto', mt: 5 }}>
+            <TableContainer
+                component={Paper}
+                sx={{ maxHeight: 440, maxWidth: '90%', margin: 'auto', mt: 5 }}
+            >
                 <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 700 }}>
                     <TableHead>
                         <TableRow>
