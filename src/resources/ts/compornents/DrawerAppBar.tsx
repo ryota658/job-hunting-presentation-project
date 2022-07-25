@@ -33,11 +33,10 @@ interface Props {
 
 const drawerWidth = 240;
 const navItems = [
-    { name: 'ホーム', link: '/' },
     { name: '従業員登録', link: '/signUp' },
     { name: '勤怠管理', link: '/attendanceManegementDay' },
 ];
-export const DrawerAppBar = (props: Props) => {
+export const DrawerAppBar = React.memo((props: Props) => {
     const classes = useStyles();
     const [authority, setAuthority] = useState<string>('一般');
     const handleChange = (event: SelectChangeEvent) => {
@@ -101,7 +100,7 @@ export const DrawerAppBar = (props: Props) => {
                         </Typography>
                         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                             {navItems.map((item, index) => (
-                                <Button key={index} sx={{ color: '#fff' }}>
+                                <Button key={index} href={item.link} sx={{ color: '#fff' }} >
                                     {item.name}
                                 </Button>
                             ))}
@@ -129,4 +128,4 @@ export const DrawerAppBar = (props: Props) => {
             <div className={classes.offset} />
         </ThemeProvider>
     );
-};
+});
