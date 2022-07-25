@@ -25,7 +25,6 @@ services:
       - ./mysql/data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: secret
-    user: 1000:1000
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
