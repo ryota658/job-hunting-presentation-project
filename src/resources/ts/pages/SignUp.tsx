@@ -39,10 +39,10 @@ const Copyright = (props: any) => {
 
 
 interface State {
-    firstName: string;
-    lastName: string;
+    name: string;
     hourlyWage: number;
-    authority: string;
+    departmentId: string;
+    email: string;
     password: string;
     showPassword: boolean;
 }
@@ -55,10 +55,10 @@ export const SignUp: FC = () => {
     DrawerAppBar;
     // form
     const [values, setValues] = React.useState<State>({
-        firstName: '',
-        lastName: '',
+        name: "",
         hourlyWage: 1000,
-        authority: '一般',
+        departmentId: '1',
+        email: "",
         password: '',
         showPassword: false,
     });
@@ -101,42 +101,24 @@ export const SignUp: FC = () => {
                     <form action="/signUp" method="post" id="hoge">
                         <input type="hidden" name="_token" value={csrf} />
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6} sx={{ mt: 2 }}>
-                                <InputLabel htmlFor="standard-adornment-first-name">
-                                    氏名
-                                </InputLabel>
+                            <Grid item xs={12} sx={{ mt: 2 }}>
+                                <InputLabel htmlFor="standard-adornment-name">名前</InputLabel>
                                 <Input
                                     fullWidth
-                                    id="standard-adornment-first-name"
+                                    id="standard-adornment-name"
                                     type="text"
-                                    name="firstName"
-                                    onChange={handleChange('firstName')}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6} sx={{ mt: 2 }}>
-                                <InputLabel htmlFor="standard-adornment-last-name">名前</InputLabel>
-                                <Input
-                                    fullWidth
-                                    id="standard-adornment-last-name"
-                                    type="text"
-                                    name="lastName"
-                                    onChange={handleChange('lastName')}
+                                    name="name"
+                                    onChange={handleChange('name')}
                                 />
                             </Grid>
                             <Grid item xs={12} sx={{ mt: 2 }}>
-                                <InputLabel htmlFor="standard-adornment-hourly-wage">
-                                    時給
-                                </InputLabel>
+                                <InputLabel htmlFor="standard-adornment-email">E-mail</InputLabel>
                                 <Input
                                     fullWidth
-                                    id="standard-adornment-hourly-wage"
-                                    type="number"
-                                    name="hourlyWage"
-                                    value={values.hourlyWage}
-                                    endAdornment={
-                                        <InputAdornment position="end">円</InputAdornment>
-                                    }
-                                    onChange={handleChange('hourlyWage')}
+                                    id="standard-adornment-email"
+                                    type="text"
+                                    name="email"
+                                    onChange={handleChange('email')}
                                 />
                             </Grid>
                             <Grid item xs={12} sx={{ mt: 2 }}>
@@ -167,17 +149,33 @@ export const SignUp: FC = () => {
                                 />
                             </Grid>
                             <Grid item xs={12} sx={{ mt: 2 }}>
-                                <InputLabel htmlFor="standard-adornment-suthority">役職</InputLabel>
+                                <InputLabel htmlFor="standard-adornment-hourly-wage">
+                                    時給
+                                </InputLabel>
+                                <Input
+                                    fullWidth
+                                    id="standard-adornment-hourly-wage"
+                                    type="number"
+                                    name="hourlyWage"
+                                    value={values.hourlyWage}
+                                    endAdornment={
+                                        <InputAdornment position="end">円</InputAdornment>
+                                    }
+                                    onChange={handleChange('hourlyWage')}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sx={{ mt: 2 }}>
+                                <InputLabel htmlFor="standard-adornment-departmentId">役職</InputLabel>
                                 <TextField
                                     fullWidth
-                                    id="standard-adornment-suthority"
+                                    id="standard-adornment-departmentId"
                                     select
-                                    value={values.authority}
-                                    onChange={handleChange('authority')}
+                                    value={values.departmentId}
+                                    onChange={handleChange('departmentId')}
                                     variant="standard"
                                 >
-                                    <MenuItem value={'一般'}>一般</MenuItem>
-                                    <MenuItem value={'管理者'}>管理者</MenuItem>
+                                    <MenuItem value={'1'}>一般</MenuItem>
+                                    <MenuItem value={'2'}>管理者</MenuItem>
                                 </TextField>
                             </Grid>
                         </Grid>
